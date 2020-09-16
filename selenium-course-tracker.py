@@ -9,6 +9,10 @@ import smtplib
 import time
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 def getStatus(url, courseID):
     driver.get(url)
@@ -43,10 +47,10 @@ def getCourseID(url):
     return courseID
 
 def textSender(status, count):
-    gmail_user = 'caucusconnect@gmail.com'
-    gmail_password = 'Secaucus07094'
+    gmail_user = os.getenv("USER")
+    gmail_password = os.getenv("PASS")
 
-    sms_gateway = '2018444590@tmomail.net'
+    sms_gateway = os.getenv("GATEWAY")
     # sms = 'ENROLL\nStatus: {}\nCount: {}'.format(status, count)
     msg = MIMEMultipart()
     msg['From'] = gmail_user
